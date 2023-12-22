@@ -59,7 +59,7 @@ import static cn.hutool.core.date.DatePattern.NORM_DATETIME_MS_FORMATTER;
 public class AccessLogFilter implements GlobalFilter, Ordered {
 
     @Resource
-    private CodecConfigurer codecConfigurer;
+    private CodecConfigurer codecConfigurer; // 编解码器用于将字节流转换为 Java 对象或将 Java 对象转换为字节流，以便在网络传输或存储时进行编码和解码操作。
 
     /**
      * 打印日志
@@ -129,7 +129,7 @@ public class AccessLogFilter implements GlobalFilter, Ordered {
         // 包装 Response，用于记录 Response Body
         ServerHttpResponseDecorator decoratedResponse = recordResponseLog(exchange, accessLog);
         return chain.filter(exchange.mutate().response(decoratedResponse).build())
-                .then(Mono.fromRunnable(() -> writeAccessLog(accessLog))); // 打印日志
+                .then(Mono.fromRunnable(() -> writeAccessLog(accessLog))); // 打印日志，Mono.fromRunnable() 将 Runnable 中的任务异步地执行，并返回一个 Mono<Void> 类型的对象，表示该任务已经完成。
     }
 
     /**
@@ -178,7 +178,8 @@ public class AccessLogFilter implements GlobalFilter, Ordered {
 
             @Override
             public Mono<Void> writeWith(Publisher<? extends DataBuffer> body) {
-                if (body instanceof Flux) {
+                if (body instanceof Flux) { // Flux 个响应式编程库，用于处理异步数据流。Flux 的核心概念是“发布-订阅”模式
+                    // DataBufferFactory 是 Java 中的一个接口，用于创建和管理数据缓冲区。
                     DataBufferFactory bufferFactory = response.bufferFactory();
                     // 计算执行时间
                     gatewayLog.setEndTime(LocalDateTime.now());
@@ -194,7 +195,7 @@ public class AccessLogFilter implements GlobalFilter, Ordered {
                     String originalResponseContentType = exchange.getAttribute(ServerWebExchangeUtils.ORIGINAL_RESPONSE_CONTENT_TYPE_ATTR);
                     if (StringUtils.isNotBlank(originalResponseContentType)
                             && originalResponseContentType.contains("application/json")) {
-                        Flux<? extends DataBuffer> fluxBody = Flux.from(body);
+                        Flux<? extends DataBuffer> fluxBody = Flux.from(body); // 将 body 中的数据流转换为 Flux<T> 类型，以便在 WebFlux 中使用。
                         return super.writeWith(fluxBody.buffer().map(dataBuffers -> {
                             // 设置 response body 到网关日志
                             byte[] content = readContent(dataBuffers);

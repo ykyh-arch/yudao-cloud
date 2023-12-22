@@ -100,6 +100,7 @@ public class SecurityFrameworkUtils {
      * @param user 用户
      */
     public static void setLoginUserHeader(ServerHttpRequest.Builder builder, LoginUser user) {
+        // 在实际应用中，例如在Spring Cloud Gateway中，底层使用Netty处理网络请求，会创建并使用ServerHttpRequest实例来承载请求相关的属性和请求体。具体的实现类是ReactorServerHttpRequest，这是由于它的父类AbstractServerHttpRequest在初始化内部属性headers的时候会把请求的HTTP头部封装为只读的实例。
         builder.header(LOGIN_USER_HEADER, JsonUtils.toJsonString(user));
     }
 

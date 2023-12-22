@@ -29,7 +29,9 @@ public class CorsResponseHeaderFilter implements GlobalFilter, Ordered {
     }
 
     @Override
-    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) { // ServerWebExchange 存放了重要的请求-响应属性、请求实例和响应实例等信息。特别是在 Spring WebFlux 中，代表 HTTP 请求和响应交互的契约。
+        // Mono.defer() 懒加载或延迟计算的场景，可以避免不必要的资源消耗和性能开销。
+        // Mono.just() 同步特性，它会立即返回包含指定值的 Mono 对象
         return chain.filter(exchange).then(Mono.defer(() -> {
             exchange.getResponse().getHeaders().entrySet().stream()
                     .filter(kv -> (kv.getValue() != null && kv.getValue().size() > 1))

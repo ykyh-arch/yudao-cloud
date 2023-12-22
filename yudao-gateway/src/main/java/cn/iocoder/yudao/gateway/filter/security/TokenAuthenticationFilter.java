@@ -64,7 +64,7 @@ public class TokenAuthenticationFilter implements GlobalFilter, Ordered {
 
                 @Override
                 public LoginUser load(KeyValue<Long, String> token) {
-                    String body = checkAccessToken(token.getKey(), token.getValue()).block();
+                    String body = checkAccessToken(token.getKey(), token.getValue()).block(); // 这个方法会一直阻塞，直到 Mono 发出数据元素或者发生错误。
                     return buildUser(body);
                 }
 
@@ -112,7 +112,7 @@ public class TokenAuthenticationFilter implements GlobalFilter, Ordered {
         KeyValue<Long, String> cacheKey = new KeyValue<Long, String>().setKey(tenantId).setValue(token);
         LoginUser localUser = loginUserCache.getIfPresent(cacheKey);
         if (localUser != null) {
-            return Mono.just(localUser);
+            return Mono.just(localUser); // 同步特性，它会立即返回包含指定值的 Mono 对象
         }
 
         // 缓存不存在，则请求远程服务

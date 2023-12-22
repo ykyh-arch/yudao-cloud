@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * @author 芋道源码
  */
 @Slf4j
-public class BannerApplicationRunner implements ApplicationRunner {
+public class BannerApplicationRunner implements ApplicationRunner { //  应用程序启动时执行某些初始化逻辑、预热缓存等操作。
 
     @Override
     public void run(ApplicationArguments args) {

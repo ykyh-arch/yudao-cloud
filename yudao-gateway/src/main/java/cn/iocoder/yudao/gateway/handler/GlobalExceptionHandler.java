@@ -32,7 +32,7 @@ public class GlobalExceptionHandler implements ErrorWebExceptionHandler {
         // 已经 commit，则直接返回异常
         ServerHttpResponse response = exchange.getResponse();
         if (response.isCommitted()) {
-            return Mono.error(ex);
+            return Mono.error(ex); // 在响应式编程中创建一个表示错误的 Mono 对象。
         }
 
         // 转换成 CommonResult

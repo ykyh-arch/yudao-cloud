@@ -60,7 +60,7 @@ public class WebFrameworkUtils {
         ServerHttpResponse response = exchange.getResponse();
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON_UTF8);
         // 设置 body
-        return response.writeWith(Mono.fromSupplier(() -> {
+        return response.writeWith(Mono.fromSupplier(() -> { // 用于从给定的Supplier对象中创建一个Mono对象
             DataBufferFactory bufferFactory = response.bufferFactory();
             try {
                 return bufferFactory.wrap(JsonUtils.toJsonByte(object));

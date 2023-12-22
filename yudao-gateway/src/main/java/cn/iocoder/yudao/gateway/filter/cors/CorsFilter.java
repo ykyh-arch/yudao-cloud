@@ -40,6 +40,7 @@ public class CorsFilter implements WebFilter {
         headers.add("Access-Control-Max-Age", MAX_AGE);
         if (request.getMethod() == HttpMethod.OPTIONS) {
             response.setStatusCode(HttpStatus.OK);
+            // Mono.empty() 是 Spring WebFlux 中的一个方法，它返回一个空的 Mono 对象。在响应式编程中，Mono 是一个表示单个异步结果的类。当您需要表示没有数据可供处理时，可以使用 Mono.empty() 方法创建一个空的 Mono 对象。这个空的 Mono 对象不会发生任何值，也不会完成或失败。
             return Mono.empty();
         }
         return chain.filter(exchange);
