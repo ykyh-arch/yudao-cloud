@@ -29,6 +29,7 @@ public enum UserTypeEnum implements IntArrayValuable {
     private final String name;
 
     public static UserTypeEnum valueOf(Integer value) {
+        // 数组中查询第一个元素
         return ArrayUtil.firstMatch(userType -> userType.getValue().equals(value), UserTypeEnum.values());
     }
 
