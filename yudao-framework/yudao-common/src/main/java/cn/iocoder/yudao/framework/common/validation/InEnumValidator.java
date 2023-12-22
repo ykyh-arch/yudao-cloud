@@ -19,6 +19,7 @@ public class InEnumValidator implements ConstraintValidator<InEnum, Integer> {
         if (values.length == 0) {
             this.values = Collections.emptyList();
         } else {
+            // .boxed() 将基本类型的流转换为包装类型的流，也可以使用.mapToObj(Integer::valueOf)等类似方法
             this.values = Arrays.stream(values[0].array()).boxed().collect(Collectors.toList());
         }
     }
