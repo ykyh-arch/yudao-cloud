@@ -23,7 +23,7 @@ public class ApiErrorLogFrameworkServiceImpl implements ApiErrorLogFrameworkServ
     @Async
     public void createApiErrorLog(ApiErrorLog apiErrorLog) {
         ApiErrorLogCreateReqDTO reqDTO = BeanUtil.copyProperties(apiErrorLog, ApiErrorLogCreateReqDTO.class);
-        apiErrorLogApi.createApiErrorLog(reqDTO).checkError();
+        apiErrorLogApi.createApiErrorLog(reqDTO).checkError(); // 对 api 返回的结果检查
     }
 
 }

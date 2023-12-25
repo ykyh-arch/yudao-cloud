@@ -80,7 +80,7 @@ public class ApiAccessLogFilter extends ApiRequestFilter {
         // 处理用户信息
         accessLog.setUserId(WebFrameworkUtils.getLoginUserId(request));
         accessLog.setUserType(WebFrameworkUtils.getLoginUserType(request));
-        // 设置访问结果
+        // 设置访问结果 -》这里通过全局响应结果（ResponseBody）处理器已经处理过哟
         CommonResult<?> result = WebFrameworkUtils.getCommonResult(request);
         if (result != null) {
             accessLog.setResultCode(result.getCode());
