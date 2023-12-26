@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class WebFrameworkUtils {
 
+    // request attribute 是 Servlet 内部维护，便于 web 组件内部使用
     private static final String REQUEST_ATTRIBUTE_LOGIN_USER_ID = "login_user_id";
     private static final String REQUEST_ATTRIBUTE_LOGIN_USER_TYPE = "login_user_type";
 

@@ -92,6 +92,11 @@ public class YudaoSecurityAutoConfiguration {
      */
     @Bean
     public MethodInvokingFactoryBean securityContextHolderMethodInvokingFactoryBean() {
+        // MethodInvokingFactoryBean 在Spring中，通常使用依赖注入来获取其他bean的实例，并调用其方法。但有时候我们需要在配置文件中直接调用某个具体对象的方法，而不是通过依赖注入。这时可以使用 MethodInvokingFactoryBean 来实现。
+        // MethodInvokingFactoryBean的主要作用是：
+        // 实例化和配置对象：MethodInvokingFactoryBean 可以通过 targetObject 属性指定要调用方法的目标对象，并通过 targetMethod 属性指定要调用的方法名。
+        // 执行方法调用：当Spring容器初始化时，MethodInvokingFactoryBean会自动调用指定对象的指定方法，并将返回值作为 MethodInvokingFactoryBean 的实例。
+        // 提供灵活的配置选项：MethodInvokingFactoryBean 提供了多个配置选项，例如 arguments 属性用于指定方法调用的参数、staticMethod 属性用于调用静态方法等。
         MethodInvokingFactoryBean methodInvokingFactoryBean = new MethodInvokingFactoryBean();
         methodInvokingFactoryBean.setTargetClass(SecurityContextHolder.class);
         methodInvokingFactoryBean.setTargetMethod("setStrategyName");

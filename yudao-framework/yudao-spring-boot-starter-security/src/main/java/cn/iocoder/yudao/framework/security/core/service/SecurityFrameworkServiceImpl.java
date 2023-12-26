@@ -41,6 +41,7 @@ public class SecurityFrameworkServiceImpl implements SecurityFrameworkService {
 
                 @Override
                 public Boolean load(KeyValue<Long, List<String>> key) {
+                    // 通过 rpc 查询用户的权限信息
                     return permissionApi.hasAnyRoles(key.getKey(), key.getValue().toArray(new String[0])).getCheckedData();
                 }
 

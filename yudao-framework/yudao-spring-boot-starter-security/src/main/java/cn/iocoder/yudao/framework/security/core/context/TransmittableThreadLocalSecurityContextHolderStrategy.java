@@ -7,7 +7,7 @@ import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.util.Assert;
 
 /**
- * 基于 TransmittableThreadLocal 实现的 Security Context 持有者策略
+ * 基于 TransmittableThreadLocal 实现的 Security Context 持有者策略，TransmittableThreadLocal 是一个线程上下文传递工具类，它可以在多线程环境下传递线程本地变量的值
  * 目的是，避免 @Async 等异步执行时，原生 ThreadLocal 的丢失问题
  *
  * @author 芋道源码

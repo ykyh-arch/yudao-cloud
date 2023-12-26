@@ -17,6 +17,7 @@ public class LoginUserRequestInterceptor implements RequestInterceptor {
     public void apply(RequestTemplate requestTemplate) {
         LoginUser user = SecurityFrameworkUtils.getLoginUser();
         if (user != null) {
+            // Feign 请求头中携带 login-user 信息
             FeignUtils.createJsonHeader(requestTemplate, SecurityFrameworkUtils.LOGIN_USER_HEADER, user);
         }
     }

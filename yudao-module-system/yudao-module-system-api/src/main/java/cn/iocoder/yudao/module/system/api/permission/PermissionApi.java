@@ -21,7 +21,7 @@ public interface PermissionApi {
     String PREFIX = ApiConstants.PREFIX + "/permission";
 
     @GetMapping(PREFIX + "/user-role-id-list-by-role-id")
-    @Operation(summary = "获得拥有多个角色的用户编号集合")
+    @Operation(summary = "获得拥有多个角色的角色编号集合")
     @Parameter(name = "roleIds", description = "角色编号集合", example = "1,2", required = true)
     CommonResult<Set<Long>> getUserRoleIdListByRoleIds(@RequestParam("roleIds") Collection<Long> roleIds);
 

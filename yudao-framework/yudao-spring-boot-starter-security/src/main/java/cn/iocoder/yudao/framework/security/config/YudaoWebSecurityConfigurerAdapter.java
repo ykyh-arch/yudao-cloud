@@ -149,7 +149,7 @@ public class YudaoWebSecurityConfigurerAdapter {
 
     private Multimap<HttpMethod, String> getPermitAllUrlsFromAnnotations() {
         Multimap<HttpMethod, String> result = HashMultimap.create();
-        // 获得接口对应的 HandlerMethod 集合
+        // 获得接口对应的 HandlerMethod 集合，在 Spring MVC 中，RequestMappingHandlerMapping 负责处理请求映射，并将请求分发给对应的控制器方法进行处理。
         RequestMappingHandlerMapping requestMappingHandlerMapping = (RequestMappingHandlerMapping)
                 applicationContext.getBean("requestMappingHandlerMapping");
         Map<RequestMappingInfo, HandlerMethod> handlerMethodMap = requestMappingHandlerMapping.getHandlerMethods();
