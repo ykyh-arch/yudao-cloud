@@ -21,6 +21,13 @@ import java.util.Set;
 @Slf4j
 public class IdTypeEnvironmentPostProcessor implements EnvironmentPostProcessor {
 
+    // org.springframework.boot.env.EnvironmentPostProcessor 是 Spring Boot 中的一个接口，用于在 Spring 应用程序启动时对 Spring 的 Environment 进行后处理。
+    // Environment 代表了 Spring 应用程序的环境配置，包括配置属性、配置文件等信息。EnvironmentPostProcessor 接口允许开发者在 Spring Boot 应用程序启动时动态地修改 Environment 中的属性值，或者添加新的属性。
+    // 主要作用包括：
+    // 动态修改应用程序的配置属性：开发者可以实现自定义的 EnvironmentPostProcessor 来在应用程序启动时修改配置属性，例如根据环境变量、外部配置文件等动态地修改应用程序的配置信息。
+    // 添加额外的配置属性：通过实现 EnvironmentPostProcessor 接口，开发者可以向 Environment 中添加额外的配置属性，这些属性可以在应用程序其他地方使用。
+    // 总之，EnvironmentPostProcessor 接口为开发者提供了在 Spring Boot 应用程序启动时对环境配置进行处理的扩展点，能够帮助开发者动态地修改和扩展应用程序的配置信息。
+
     private static final String ID_TYPE_KEY = "mybatis-plus.global-config.db-config.id-type";
 
     private static final String DATASOURCE_DYNAMIC_KEY = "spring.datasource.dynamic";

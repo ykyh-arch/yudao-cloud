@@ -16,6 +16,8 @@ import java.util.Set;
  */
 public class JsonLongSetTypeHandler extends AbstractJsonTypeHandler<Object> {
 
+    // 在 Java 中，由于泛型的类型信息在编译时会被擦除，而 TypeReference 类在反序列化过程中保留泛型类型信息，在反序列化过程中保留泛型类型信息
+    // 支持 Jackson 库的泛型对象的序列化和反序列化操作
     private static final TypeReference<Set<Long>> TYPE_REFERENCE = new TypeReference<Set<Long>>(){};
 
     @Override
