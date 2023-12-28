@@ -72,7 +72,7 @@ public class OperateLogAspect {
 
     @Around("@annotation(operation)")
     public Object around(ProceedingJoinPoint joinPoint, Operation operation) throws Throwable {
-        // 可能也添加了 @ApiOperation 注解
+        // 可能也添加了 @OperateLog 注解
         cn.iocoder.yudao.framework.operatelog.core.annotations.OperateLog operateLog = getMethodAnnotation(joinPoint,
                 cn.iocoder.yudao.framework.operatelog.core.annotations.OperateLog.class);
         return around0(joinPoint, operateLog, operation);
@@ -184,7 +184,7 @@ public class OperateLogAspect {
                 if (StrUtil.isNotEmpty(tag.name())) {
                     operateLogObj.setModule(tag.name());
                 }
-                // 没有的话，读取 @API 的 description 属性
+                // 没有的话，读取 @Tag 的 description 属性
                 if (StrUtil.isEmpty(operateLogObj.getModule()) && ArrayUtil.isNotEmpty(tag.description())) {
                     operateLogObj.setModule(tag.description());
                 }
@@ -260,10 +260,10 @@ public class OperateLogAspect {
         }
         // Cloud 专属逻辑：如果是 RPC 请求，则必须 @OperateLog 注解，才会记录操作日志
         String className = joinPoint.getSignature().getDeclaringType().getName();
-        if (WebFrameworkUtils.isRpcRequest(className)) {
+        if (WebFrameworkUtils.isRpcRequest(className)) { // 排除 xxxApi 的日志记录
             return false;
         }
-        // 没有 @ApiOperation 注解的情况下，只记录 POST、PUT、DELETE 的情况
+        // 没有 @OperateLog 注解的情况下，只记录 POST、PUT、DELETE 的情况
         return obtainFirstLogRequestMethod(obtainRequestMethod(joinPoint)) != null;
     }
 
