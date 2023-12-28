@@ -63,13 +63,14 @@ public class StringDesensitizeSerializer extends StdSerializer<String> implement
         // 自定义处理器
         DesensitizeBy[] annotations = AnnotationUtil.getCombinationAnnotations(field, DesensitizeBy.class);
         if (ArrayUtil.isEmpty(annotations)) {
-            gen.writeString(value);
+            gen.writeString(value); // 非脱敏字段写入
             return;
         }
         for (Annotation annotation : field.getAnnotations()) {
             if (AnnotationUtil.hasAnnotation(annotation.annotationType(), DesensitizeBy.class)) {
+                // 脱敏后的内容
                 value = this.desensitizationHandler.desensitize(value, annotation);
-                gen.writeString(value);
+                gen.writeString(value); // 脱敏后字段写入
                 return;
             }
         }
