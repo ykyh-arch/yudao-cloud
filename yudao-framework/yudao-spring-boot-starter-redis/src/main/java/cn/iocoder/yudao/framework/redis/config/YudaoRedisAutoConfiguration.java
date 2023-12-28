@@ -35,7 +35,7 @@ public class YudaoRedisAutoConfiguration {
 
     public static RedisSerializer<?> buildRedisSerializer() {
         RedisSerializer<Object> json = RedisSerializer.json();
-        // 解决 LocalDateTime 的序列化
+        // 解决 LocalDateTime 的序列化，这里应该是 objectMapper 而不是 mapper
         ObjectMapper objectMapper = (ObjectMapper) ReflectUtil.getFieldValue(json, "mapper");
         objectMapper.registerModules(new JavaTimeModule());
         return json;
