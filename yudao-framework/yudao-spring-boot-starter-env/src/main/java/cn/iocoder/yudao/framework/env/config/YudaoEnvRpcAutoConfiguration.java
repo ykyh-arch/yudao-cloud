@@ -32,7 +32,7 @@ public class YudaoEnvRpcAutoConfiguration {
      */
     @Bean
     public LoadBalancerClientFactory loadBalancerClientFactory(LoadBalancerClientsProperties properties,
-                                                               ObjectProvider<List<LoadBalancerClientSpecification>> configurations) {
+                                                               ObjectProvider<List<LoadBalancerClientSpecification>> configurations) { // LoadBalancerClientSpecification 定义负载均衡客户端的相关配置
         EnvLoadBalancerClientFactory clientFactory = new EnvLoadBalancerClientFactory(properties);
         clientFactory.setConfigurations(configurations.getIfAvailable(Collections::emptyList));
         return clientFactory;

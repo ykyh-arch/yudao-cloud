@@ -54,6 +54,7 @@ public class YudaoRedisMQConsumerAutoConfiguration {
         // 添加监听器
         listeners.forEach(listener -> {
             listener.setRedisMQTemplate(redisMQTemplate);
+            // 添加消息监听器器
             container.addMessageListener(listener, new ChannelTopic(listener.getChannel()));
             log.info("[redisMessageListenerContainer][注册 Channel({}) 对应的监听器({})]",
                     listener.getChannel(), listener.getClass().getName());

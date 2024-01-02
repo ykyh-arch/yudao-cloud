@@ -52,7 +52,7 @@ public class EnvLoadBalancerClient implements ReactorServiceInstanceLoadBalancer
         // 情况一，没有 tag 时，使用默认的 reactiveLoadBalancer 实现负载均衡
         String tag = EnvContextHolder.getTag();
         if (StrUtil.isEmpty(tag)) {
-            return Mono.from(reactiveLoadBalancer.choose(request));
+            return Mono.from(reactiveLoadBalancer.choose(request)); // 将不同类型的数据源转换为Mono对象
         }
 
         // 情况二，有 tag 时，使用 tag 匹配服务实例
@@ -74,9 +74,9 @@ public class EnvLoadBalancerClient implements ReactorServiceInstanceLoadBalancer
             chooseInstances = instances;
         }
 
-        // TODO 芋艿：https://juejin.cn/post/7056770721858469896 想通网段
+        // TODO 芋艿：https://juejin.cn/post/7056770721858469896 相同网段
 
-        // 随机 + 权重获取实例列表 TODO 芋艿：目前直接使用 Nacos 提供的方法，如果替换注册中心，需要重新失败该方法
+        // 随机 + 权重获取实例列表 TODO 芋艿：目前直接使用 Nacos 提供的方法，如果替换注册中心，需要重新实现该方法
         return new DefaultResponse(NacosBalancer.getHostByRandomWeight3(chooseInstances));
     }
 

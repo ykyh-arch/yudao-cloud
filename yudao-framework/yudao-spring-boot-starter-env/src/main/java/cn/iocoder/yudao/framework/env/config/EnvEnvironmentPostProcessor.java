@@ -43,7 +43,7 @@ public class EnvEnvironmentPostProcessor implements EnvironmentPostProcessor {
             if (StrUtil.isNotEmpty(targetTagValue)) {
                 continue;
             }
-            environment.getSystemProperties().put(targetTagKey, tag);
+            environment.getSystemProperties().put(targetTagKey, tag); // 存储主机名
         }
     }
 
