@@ -32,7 +32,7 @@ public class MoneyConvert implements Converter<Integer> {
     public WriteCellData<String> convertToExcelData(Integer value, ExcelContentProperty contentProperty,
                                                     GlobalConfiguration globalConfiguration) {
         BigDecimal result = BigDecimal.valueOf(value)
-                .divide(new BigDecimal(100), 2, RoundingMode.HALF_UP);
+                .divide(new BigDecimal(100), 2, RoundingMode.HALF_UP); // 百分比表示，精度保留2位，四舍五入
         return new WriteCellData<>(result.toString());
     }
 
