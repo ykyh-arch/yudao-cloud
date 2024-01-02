@@ -136,7 +136,7 @@ public class AreaUtils {
      * 根据区域编号、上级区域类型，获取上级区域编号
      *
      * @param id   区域编号
-     * @param type 区域类型
+     * @param type 上级区域类型
      * @return 上级区域编号
      */
     public static Integer getParentIdByType(Integer id, @NonNull AreaTypeEnum type) {
