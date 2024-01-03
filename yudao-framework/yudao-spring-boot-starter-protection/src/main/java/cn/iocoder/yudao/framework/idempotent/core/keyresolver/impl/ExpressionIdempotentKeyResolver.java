@@ -21,6 +21,7 @@ import java.lang.reflect.Method;
  */
 public class ExpressionIdempotentKeyResolver implements IdempotentKeyResolver {
 
+    // ParameterNameDiscoverer 获取方法或构造函数参数的名称，而 LocalVariableTableParameterNameDiscoverer 通过解析字节码中的本地变量表来获取方法或构造函数的参数名称，在使用编译选项编译时，需要添加 -parameters 参数选项
     private final ParameterNameDiscoverer parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
     private final ExpressionParser expressionParser = new SpelExpressionParser();
 
