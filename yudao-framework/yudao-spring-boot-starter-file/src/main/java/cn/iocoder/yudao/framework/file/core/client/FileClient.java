@@ -8,7 +8,7 @@ package cn.iocoder.yudao.framework.file.core.client;
 public interface FileClient {
 
     /**
-     * 获得客户端编号
+     * 获得客户端编号 = configId
      *
      * @return 客户端编号
      */

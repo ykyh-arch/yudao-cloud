@@ -11,6 +11,7 @@ import org.apache.tika.Tika;
  */
 public class FileTypeUtils {
 
+    // 保证 ThreadLocal 的传递性
     private static final ThreadLocal<Tika> TIKA = TransmittableThreadLocal.withInitial(Tika::new);
 
     /**
