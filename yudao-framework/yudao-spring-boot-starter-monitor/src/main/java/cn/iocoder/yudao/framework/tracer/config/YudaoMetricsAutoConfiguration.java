@@ -7,10 +7,9 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
- * Metrics 配置类
+ * Metrics 配置类，将应用名称注册到 Meter 元数据里
  *
  * @author 芋道源码
  */
