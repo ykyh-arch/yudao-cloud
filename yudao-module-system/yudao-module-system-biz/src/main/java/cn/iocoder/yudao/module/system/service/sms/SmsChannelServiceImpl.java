@@ -155,7 +155,7 @@ public class SmsChannelServiceImpl implements SmsChannelService {
 
     @Override
     public SmsClient getSmsClient(Long id) {
-        return idClientCache.getUnchecked(id);
+        return idClientCache.getUnchecked(id); // 从缓存中获取指定键对应的值，如果该键不存在，则会自动调用CacheLoader.load()方法加载数据并存储到缓存中
     }
 
     @Override

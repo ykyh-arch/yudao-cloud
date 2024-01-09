@@ -66,6 +66,7 @@ public class SmsClientFactoryImpl implements SmsClientFactory {
         AbstractSmsClient client = channelIdClients.get(properties.getId());
         if (client == null) {
             client = this.createSmsClient(properties);
+            // 初始化
             client.init();
             channelIdClients.put(client.getId(), client);
         } else {
@@ -73,6 +74,7 @@ public class SmsClientFactoryImpl implements SmsClientFactory {
         }
     }
 
+    // 这里的创建客户端的方式可以对比参考下 starter-file 中的方式，那里采取反射创建
     private AbstractSmsClient createSmsClient(SmsChannelProperties properties) {
         SmsChannelEnum channelEnum = SmsChannelEnum.getByCode(properties.getCode());
         Assert.notNull(channelEnum, String.format("渠道类型(%s) 为空", channelEnum));

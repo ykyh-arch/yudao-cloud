@@ -107,7 +107,7 @@ public class AliyunSmsClient extends AbstractSmsClient {
                 .setAuditStatus(convertSmsTemplateAuditStatus(response.getTemplateStatus())).setAuditReason(response.getReason());
     }
 
-    @VisibleForTesting
+    @VisibleForTesting // 在编写测试代码时，有时需要访问类的私有方法或字段，以验证其行为和状态。
     Integer convertSmsTemplateAuditStatus(Integer templateStatus) {
         switch (templateStatus) {
             case 0: return SmsTemplateAuditStatusEnum.CHECKING.getStatus();

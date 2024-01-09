@@ -35,7 +35,7 @@ public interface SmsClient {
                            List<KeyValue<String, Object>> templateParams) throws Throwable;
 
     /**
-     * 解析接收短信的接收结果
+     * 解析接收短信的接收结果 - 短信报告，短信回调用于记录短信发送结果便于记录到日志中
      *
      * @param text 结果
      * @return 结果内容
@@ -44,7 +44,7 @@ public interface SmsClient {
     List<SmsReceiveRespDTO> parseSmsReceiveStatus(String text) throws Throwable;
 
     /**
-     * 查询指定的短信模板
+     * 查询指定的短信模板 - 短信模板审核状态情况 - 管理后台添加模板时便于判断模板是否可用
      *
      * @param apiTemplateId 短信 API 的模板编号
      * @return 短信模板
