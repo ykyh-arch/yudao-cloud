@@ -75,7 +75,7 @@ public class PayOrderServiceTest extends BaseDbAndRedisUnitTest {
     @MockBean
     private PayNotifyService notifyService;
 
-    @BeforeEach
+    @BeforeEach // 统一特殊属性赋值
     public void setUp() {
         when(properties.getOrderNotifyUrl()).thenReturn("http://127.0.0.1");
     }

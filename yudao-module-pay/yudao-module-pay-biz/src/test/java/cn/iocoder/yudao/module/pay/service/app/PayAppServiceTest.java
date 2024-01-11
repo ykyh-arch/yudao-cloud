@@ -44,7 +44,7 @@ public class PayAppServiceTest extends BaseDbUnitTest {
     @Resource
     private PayAppMapper appMapper;
 
-    @MockBean
+    @MockBean // 注意与手动注入的区别：参考 AliyunSmsClientTest#smsClient 使用方式
     private PayOrderService orderService;
     @MockBean
     private PayRefundService refundService;
@@ -155,7 +155,7 @@ public class PayAppServiceTest extends BaseDbUnitTest {
         // 准备参数
         Long id = dbApp.getId();
         // mock 订单有订单
-        when(refundService.getRefundCountByAppId(eq(id))).thenReturn(10L);
+        when(refundService.getRefundCountByAppId(eq(id))).thenReturn(10L); // 单参数用 eq(id) 多参数用 argThat()
 
         // 调用, 并断言异常
         assertServiceException(() -> appService.deleteApp(id), APP_EXIST_REFUND_CANT_DELETE);

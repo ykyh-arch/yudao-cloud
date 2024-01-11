@@ -107,7 +107,7 @@ public class RandomUtils {
         return "https://www.iocoder.cn/" + randomString();
     }
 
-    @SafeVarargs
+    @SafeVarargs // 标记可变参数方法（varargs method）的安全使用，避免类型转换异常（ClassCastException），只能用于静态方法、final实例方法和构造函数，提高代码的可靠性和安全性。
     public static <T> T randomPojo(Class<T> clazz, Consumer<T>... consumers) {
         T pojo = PODAM_FACTORY.manufacturePojo(clazz);
         // 非空时，回调逻辑。通过它，可以实现 Pojo 的进一步处理
