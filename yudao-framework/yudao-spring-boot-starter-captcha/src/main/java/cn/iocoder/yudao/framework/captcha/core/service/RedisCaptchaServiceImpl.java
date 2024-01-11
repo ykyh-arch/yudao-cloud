@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author 星语
  */
-@NoArgsConstructor // 保证 aj-captcha 的 SPI 创建
+@NoArgsConstructor // 保证 aj-captcha 的 SPI 创建，使应用程序在运行时能够动态地加载和使用不同的服务实现。
 @AllArgsConstructor
 public class RedisCaptchaServiceImpl implements CaptchaCacheService {
 
